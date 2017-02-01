@@ -1,8 +1,13 @@
 defmodule Ecto.DynamicexprBugTest do
   use ExUnit.Case
-  doctest Ecto.DynamicexprBug
+  alias Ecto.DynamicexprBug.{Repo, User, Post}
 
-  test "the truth" do
-    assert 1 + 1 == 2
+  setup do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Repo)
+  end
+
+  test "test" do
+    Repo.all(User)
+    |> IO.inspect
   end
 end

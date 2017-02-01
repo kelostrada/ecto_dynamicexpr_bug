@@ -7,6 +7,7 @@ defmodule Ecto.DynamicexprBug.Mixfile do
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     aliases: aliases(),
      deps: deps()]
   end
 
@@ -34,5 +35,11 @@ defmodule Ecto.DynamicexprBug.Mixfile do
       {:ecto, "~> 2.1"},
       {:postgrex, "~> 0.13"}
     ]
+  end
+
+  defp aliases do
+    ["ecto.setup": ["ecto.create", "ecto.migrate"],
+     "ecto.reset": ["ecto.drop", "ecto.setup"],
+     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end
