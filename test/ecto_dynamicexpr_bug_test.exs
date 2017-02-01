@@ -1,5 +1,6 @@
 defmodule Ecto.DynamicexprBugTest do
   use ExUnit.Case
+  import Ecto.Query
   alias Ecto.DynamicexprBug.{Repo, User, Post}
 
   setup do
@@ -7,7 +8,15 @@ defmodule Ecto.DynamicexprBugTest do
   end
 
   test "test" do
-    Repo.all(User)
+    dynamic = dynamic([p, u], u.username == ^"test")
+    dynamic = dynamic([p], ^dynamic and p.user_id == ^1)
+
+    IO.inspect dynamic
+
+    (from p in Post,
+    join: u in assoc(p, :user),
+    where: ^dynamic)
+    |> Repo.all
     |> IO.inspect
   end
 end

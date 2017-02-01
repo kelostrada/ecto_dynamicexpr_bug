@@ -3,7 +3,7 @@ defmodule Ecto.DynamicexprBug.Post do
 
   import Ecto.Changeset
 
-  schema "users" do
+  schema "posts" do
     field :title, :string
     field :body, :string
 
