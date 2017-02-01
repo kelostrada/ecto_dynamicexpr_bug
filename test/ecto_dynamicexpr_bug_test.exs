@@ -1,6 +1,6 @@
-defmodule EctoDynamicexprBugTest do
+defmodule Ecto.DynamicexprBugTest do
   use ExUnit.Case
-  doctest EctoDynamicexprBug
+  doctest Ecto.DynamicexprBug
 
   test "the truth" do
     assert 1 + 1 == 2

@@ -1,4 +1,4 @@
-defmodule EctoDynamicexprBug.Mixfile do
+defmodule Ecto.DynamicexprBug.Mixfile do
   use Mix.Project
 
   def project do
@@ -15,7 +15,9 @@ defmodule EctoDynamicexprBug.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
-    [extra_applications: [:logger]]
+    [
+      mod: {Ecto.DynamicexprBug, []},
+      extra_applications: [:logger]]
   end
 
   # Dependencies can be Hex packages:
@@ -28,6 +30,9 @@ defmodule EctoDynamicexprBug.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:ecto, "~> 2.1"},
+      {:postgrex, "~> 0.13"}
+    ]
   end
 end
