@@ -32,7 +32,7 @@ defmodule Ecto.DynamicexprBug.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:ecto, "~> 2.1"},
+      {:ecto, github: "elixir-ecto/ecto"},
       {:postgrex, "~> 0.13"}
     ]
   end

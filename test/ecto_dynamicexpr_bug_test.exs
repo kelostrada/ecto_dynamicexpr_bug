@@ -8,15 +8,16 @@ defmodule Ecto.DynamicexprBugTest do
   end
 
   test "test" do
-    dynamic = dynamic([p, u], u.username == ^"test")
-    dynamic = dynamic([p], ^dynamic and p.user_id == ^1)
+    user = Repo.insert!(%User{username: "test"})
+    post = Repo.insert!(%Post{title: "test post", body: "Lorem Ipsum", user_id: user.id})
 
-    IO.inspect dynamic
+    dynamic = dynamic([p, u], u.username == ^user.username)
+    dynamic = dynamic([p], ^dynamic and p.user_id == ^user.id)
 
-    (from p in Post,
+    assert ((from p in Post,
     join: u in assoc(p, :user),
     where: ^dynamic)
-    |> Repo.all
-    |> IO.inspect
+    |> Repo.all) == [post]
+
   end
 end
